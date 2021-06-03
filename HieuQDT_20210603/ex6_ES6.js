@@ -2,20 +2,20 @@
 //1 la arr, 2 la callback, function getTotalObjectValue cần kiểm tra obj truyền vào có valid không, 
 //nếu không sẽ trả về lỗi, nếu valid thì lấy hết value của obj đó chuyển thành 1 array, 
 //sau đó gọi đến getTotalArrayValue để tính tổng các số trong array đó và dùng callback để lấy dữ liệu về
+
 function object_create(num_1, num2, num3, num4, num5) {
     let obj = { num_1, num2, num3, num4, num5 };
     return obj;
 }
 const object = new object_create(40, 11, 9, 45, 416);
 
-
-function getTotalObjectValue(obj) {              //a là số thứ tự các phần tử bên trong object (VD: a=0 thì là keys:num_1, value:40)
+const ex6_1 = obj => {              //a là số thứ tự các phần tử bên trong object (VD: a=0 thì là keys:num_1, value:40)
     if (Object.keys(obj) == 0) {
         console.log('Error');
     }
-    else return Object.values(obj);
+    else return Object.values(obj)
 }
-const ex6_1 = getTotalObjectValue(object);
+console.log(ex6_1(object));
 
 function callback(data) {                       //callback function
     if (data) {                                 //nếu như có data
@@ -24,12 +24,13 @@ function callback(data) {                       //callback function
     return null;                                //còn không trả về null
 }
 
-function getTotalArrayValue(arr,callback) {
+const getTotalArrayValue = (arr) => {
     let sum = 0;
     arr.forEach(element => {
-        sum += element;                         //+= addition assignment
-    })
-    return callback(sum);                       //tổng sum được ném vào hàm callback 
+        sum += element;
+    });
+    const result = callback(sum).then(result => {return result}).catch(error => {return error}); 
+    //then để chứa kết quả từ callback, catch dùng để chứa lỗi nếu có xảy ra
+    return result
 }
-const ex6_2 = getTotalArrayValue(ex6_1,callback);
-console.log(ex6_2);
+console.log(getTotalArrayValue(ex6_1(object)));
