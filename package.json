@@ -1,0 +1,23 @@
+{
+  "name": "vmo-study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.27.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HieuQDT/VMO_Study.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HieuQDT/VMO_Study/issues"
+  },
+  "homepage": "https://github.com/HieuQDT/VMO_Study#readme"
+}
