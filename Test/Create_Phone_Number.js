@@ -35,7 +35,7 @@ function createPhoneNumber_2(numbers) {
 console.log(createPhoneNumber_2([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]))
 
 
-//
+//Cách 3
 function createPhoneNumber_3(numbers) {
     return numbers.join('').replace(/(...)(...)(.*)/, '($1) $2-$3');
 }
