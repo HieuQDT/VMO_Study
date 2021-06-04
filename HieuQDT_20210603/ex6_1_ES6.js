@@ -15,12 +15,13 @@ const getTotalObjectValue = obj => {              //a là số thứ tự các p
     }
     else return Object.values(obj)
 }
-console.log(getTotalObjectValue(object));
+const object_value = getTotalObjectValue(object);
+console.log(object_value);
 
 const getTotalArrayValue = (array) => {
     return new Promise(function (resolve, reject) {
         if (array == false) {
-            reject('fail');
+            reject(Error);
         } else {
             let sum = 0
             array.forEach(element => {
@@ -30,6 +31,6 @@ const getTotalArrayValue = (array) => {
         }
     })
 }
-getTotalArrayValue(getTotalObjectValue(object))
+getTotalArrayValue(object_value)
     .then(result => console.log(result))
     .catch(error => console.log(error))
