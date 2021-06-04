@@ -2,7 +2,7 @@
 //However, since someone could look over your shoulder, you don't want that shown on your screen. Instead, we mask it.
 //Your task is to write a function maskify, which changes all but the last four characters into '#'.
 
-function maskify(cc) {
+const maskify = (cc) => {
     const a = cc.slice(0,-4).replace(/./g,'#') + cc.slice(-4);
     //Metacharacter /. use to find character between a single space
     //Metacharacter /. use to find global

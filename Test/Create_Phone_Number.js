@@ -2,7 +2,7 @@
 //that returns a string of those numbers in the form of a phone number.
 //createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]) // => returns "(123) 456-7890"
 
-function createPhoneNumber(numbers) {
+const createPhoneNumber = (numbers) => {
     let result = "(";
     for (let i = 0; i < numbers.length; i++) {
         if (i === 3) {                      //i chạy đến thứ tự số 3 (aka giá trị 4 trong array), thì nó cho ) trước khi chạy tiếp
