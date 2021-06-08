@@ -1,0 +1,38 @@
+Student: [{ id: String, fistName: String, lastName: String, classId: String, dob: Date, address: String, conduct: enum("Bad", "Normal", "Good")  }];
+Class: [{ id: String, name: String, startDate: Date, endDate: Date }];
+
+Use ES6 syntax, create 2 files student_service and class_service, use import, export modules  (or module.exports/require) to call function of other service
+
+- Add a student
+  +  id is random string, no duplicate id
+  + mandatory: firstName, lastName, classId, dob, address
+  + classId must be existed in class array
+- Update student by id
+  + check userId is existed or not
+  + disallow update id
+  + update informations of received fields, ignore other fields
+  + if update classId, have to check classId is existed or not
+- Delete student by id
+  + check userId is existed or not
+- Get list students
+  + Return list of students match with filter conditions
+  + Can filter by lastName, not required
+  + Can filter by class name, not required
+  + If both lastName and class name is provided, combine 2 conditions
+  + Return new field fullName = firstName + lastName use template String (es6 feature)
+- Get detail a student
+  + Get a student by id
+
+- Add a class
+  + id logic is same with student id
+  + mandatory fields: name, startDate
+  + if have endDate, endDate must be later startDate
+- Update a class by id
+  + check class id is existed or not
+  + update informations of received fields, ignore other fields
+- Delete a class by id
+  + check class id is existed or not
+- Get list classes
+  + get list classes match with condition
+  + can filter by name
+  + return new field totalStudent =  total student in this class
