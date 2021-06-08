@@ -4,7 +4,6 @@ export const classId = uuid()
 
 export const addClass = (className, startDate, endDate) => {
     const empty_array = [];
-    let result
     if (className == undefined || startDate == undefined) {
         return Error('Mandatory field is missing!');
     }
