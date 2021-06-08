@@ -1,0 +1,18 @@
+[
+    {
+        "classId": "8f1a1f08-3a97-4d9b-a6bb-6e9024027776",
+        "className": "F8",
+        "startDate": "2021-04-30T12:00:00.000Z",
+        "end_date": "2021-09-30T12:00:00.000Z"
+    },
+    {
+        "classId": "a3e57bd7-35fb-4f26-a56c-9a705a6bd88f",
+        "className": "F7",
+        "startDate": "2021-04-30T12:00:00.000Z"
+    },
+    {
+        "classId": "8e8a4206-05f9-4179-9d5e-2d8a086f22b2",
+        "className": "F6",
+        "startDate": "2021-04-30T12:00:00.000Z"
+    }
+]
