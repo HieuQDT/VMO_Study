@@ -71,7 +71,16 @@ export const updateStudent = (studentID, data) => {
     const read_student = readStudentDB();
     const ObjIndex = read_student.findIndex((obj) => obj.studentId == studentID);
     read_student[ObjIndex] = { ...read_student[ObjIndex], ...data };
-    pushStudentDB(JSON.stringify(read_student))
+
+    if (data.studentId) {                                                       //disallow update id
+        return Error('studentId cannot be change')
+    }
+    if (data.classId) {                                                         //update classId, check classId is existed or not
+        const check_validate_class = ClassID_Validate(data.classId);
+        if (check_validate_class == true) {
+            pushStudentDB(JSON.stringify(read_student))
+        } else return Error('classID does not exist in database')
+    } else pushStudentDB(JSON.stringify(read_student))
 }
 
 //************DELETE STUDENT**************//

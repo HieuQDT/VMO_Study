@@ -7,8 +7,8 @@
 //const HieuPT = addStudent('Hieu', 'Pham Trung', '16/11/1998', 'Ha Noi', "a74906ce-1cdc-4d09-b710-701385de6154", 'Good');
 
 // Update student
-// import { updateStudent } from './Services/student_services.js';
-// const update = updateStudent('4dda71f8-261c-4a74-95f0-c3f42aefaed2',{firstName: "not Hieu"})
+import { updateStudent } from './Services/student_services.js';
+const update = updateStudent('4dda71f8-261c-4a74-95f0-c3f42aefaed2', {classId: "a74906ce-1cdc-4d09-b710-701385de6154"})
 
 // Delete student
 // import { deleteStudent } from './Services/student_services.js';
