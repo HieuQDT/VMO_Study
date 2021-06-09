@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid'
 import { readClassDB } from '../Services/index.js'
 import { writeClassDB } from '../Services/index.js'
 import { pushClassDB } from '../Services/index.js'
+import { readStudentDB } from '../Services/index.js'
 
 
 //************VALIDATE DATA**************//
@@ -77,4 +78,24 @@ export const deleteClass = (ClassID) => {
     const read_class = readClassDB();
     const update = read_class.filter((obj) => obj.classId !== ClassID);
     pushClassDB(JSON.stringify(update))
+}
+
+//************GET LIST CLASS**************//
+export const listClass = (class_name) => {
+    const read_class = readClassDB();
+    if (!class_name) {
+        return read_class;
+    }
+    else {
+        const empty_array = [];
+        const find = read_class.find((obj) => obj.className === class_name);
+        const read_student = readStudentDB();
+        let find_student = read_student.filter((obj) => obj.classId === find.classId);
+        empty_array.push(find)
+        empty_array.map(element => {
+            element.totalStudent = find_student.length;
+            return element
+        })
+        return empty_array
+    }
 }

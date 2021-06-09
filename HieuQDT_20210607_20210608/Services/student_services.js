@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid'
-import { readStudentDB } from '../Services/index.js'
+import { readClassDB, readStudentDB } from '../Services/index.js'
 import { writeStudentDB } from '../Services/index.js'
 import { pushStudentDB } from '../Services/index.js'
 import { ClassID_Validate } from '../Services/class_services.js'
@@ -35,6 +35,8 @@ const studentID_Validate = (studentId) => {
     }
     return true;
 }
+
+
 //************ADD STUDENT**************//
 const array = [];
 export const addStudent = (firstName, lastName, dob, address, classId, conduct) => {
@@ -92,4 +94,61 @@ export const deleteStudent = (studentID) => {
     const read_student = readStudentDB();
     const update = read_student.filter((obj) => obj.studentId !== studentID);
     pushStudentDB(JSON.stringify(update))
+}
+
+
+//************GET LIST STUDENT**************//
+export const listStudent = (last_name, class_name) => {
+    const read_student = readStudentDB();
+    const read_class = readClassDB();
+    if (!last_name && !class_name) {
+        read_student.map(element => {
+            element.fullName = element.firstName + ' ' + element.lastName;
+            return element
+        })
+        return read_student
+    }
+    else if (last_name && !class_name) {
+        let find = read_student.filter((obj) => obj.lastName === last_name);
+        find.map(element => {
+            element.fullName = element.firstName + ' ' + element.lastName;
+            return element
+        })
+        return find;
+    }
+    else if (!last_name && class_name) {
+        let find_class = read_class.find((obj) => obj.className === class_name);
+        let find_student = read_student.filter((obj) => obj.classId === find_class.classId);
+        find_student.map(element => {
+            element.fullName = element.firstName + ' ' + element.lastName;
+            return element
+        })
+        return find_student;
+    }
+    else {
+        const empty_array = [];
+        let find_class = read_class.find((obj) => obj.className === class_name);
+        let find_student = read_student.filter((obj) => obj.classId === find_class.classId);
+        let find = read_student.find((obj) => obj.lastName === last_name);
+        empty_array.push(find)
+        if (find_student.includes(find)) {
+            empty_array.map(element => {
+                element.fullName = element.firstName + ' ' + element.lastName;
+                return element
+            })
+            return empty_array
+        } return Error
+    }
+}
+
+
+//************GET STUDENT BY ID**************//
+export const getStudentID = (studentID) => {
+    const check_validate = studentID_Validate(studentID);
+    if (!check_validate) {
+        return Error
+    }
+    const student_database = readStudentDB();
+    let find = student_database.find((obj) => obj.studentId === studentID);
+    return find;
 }
