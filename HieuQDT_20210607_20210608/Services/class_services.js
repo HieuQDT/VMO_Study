@@ -41,7 +41,7 @@ export const addClass = (className, startDate, endDate) => {
     const check_validate = classValidate(className, startDate);
     let obj = { classId, className, startDate };
     if (!check_validate) {
-        return Error
+        return check_validate
     }
     if (endDate) {                                                            //if endDate exist
         obj.end_date = endDate
@@ -61,7 +61,7 @@ export const addClass = (className, startDate, endDate) => {
 export const updateClass = (ClassID, data) => {
     const check_validate = ClassID_Validate(ClassID);
     if (!check_validate) {
-        return Error
+        return check_validate
     }
     const read_class = readClassDB();
     const ObjIndex = read_class.findIndex((obj) => obj.classId == ClassID);
@@ -73,7 +73,7 @@ export const updateClass = (ClassID, data) => {
 export const deleteClass = (ClassID) => {
     const check_validate = ClassID_Validate(ClassID);
     if (!check_validate) {
-        return Error
+        return check_validate
     }
     const read_class = readClassDB();
     const update = read_class.filter((obj) => obj.classId !== ClassID);

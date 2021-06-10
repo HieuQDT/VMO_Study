@@ -43,12 +43,12 @@ export const addStudent = (firstName, lastName, dob, address, classId, conduct) 
     const studentId = uuid();
     const check_validate = studentValidate(firstName, lastName, dob, address);
     if (!check_validate) {
-        return Error
+        return check_validate
     }
 
     const check_validate_class = ClassID_Validate(classId);
     if (!check_validate_class) {
-        return Error
+        return check_validate_class
     }
 
     let obj = { studentId, firstName, lastName, dob, address, classId, conduct };
@@ -68,14 +68,14 @@ export const addStudent = (firstName, lastName, dob, address, classId, conduct) 
 export const updateStudent = (studentID, data) => {
     const check_validate = studentID_Validate(studentID);
     if (!check_validate) {
-        return Error
+        return check_validate
     }
     const read_student = readStudentDB();
     const ObjIndex = read_student.findIndex((obj) => obj.studentId == studentID);
     read_student[ObjIndex] = { ...read_student[ObjIndex], ...data };
 
     if (data.studentId) {                                                       //disallow update id
-        return Error('studentId cannot be change')
+        return console.log('studentId cannot be change')
     }
     if (data.classId) {                                                         //update classId, check classId is existed or not
         const check_validate_class = ClassID_Validate(data.classId);
@@ -89,7 +89,7 @@ export const updateStudent = (studentID, data) => {
 export const deleteStudent = (studentID) => {
     const check_validate = studentID_Validate(studentID);
     if (!check_validate) {
-        return Error
+        return check_validate
     }
     const read_student = readStudentDB();
     const update = read_student.filter((obj) => obj.studentId !== studentID);
@@ -103,7 +103,7 @@ export const listStudent = (last_name, class_name) => {
     const read_class = readClassDB();
     if (!last_name && !class_name) {
         read_student.map(element => {
-            element.fullName = element.firstName + ' ' + element.lastName;
+            element.fullName = `${element.firstName} ${element.lastName }`;
             return element
         })
         return read_student
@@ -111,7 +111,7 @@ export const listStudent = (last_name, class_name) => {
     else if (last_name && !class_name) {
         let find = read_student.filter((obj) => obj.lastName === last_name);
         find.map(element => {
-            element.fullName = element.firstName + ' ' + element.lastName;
+            element.fullName = `${element.firstName} ${element.lastName }`;
             return element
         })
         return find;
@@ -120,7 +120,7 @@ export const listStudent = (last_name, class_name) => {
         let find_class = read_class.find((obj) => obj.className === class_name);
         let find_student = read_student.filter((obj) => obj.classId === find_class.classId);
         find_student.map(element => {
-            element.fullName = element.firstName + ' ' + element.lastName;
+            element.fullName = `${element.firstName} ${element.lastName }`;
             return element
         })
         return find_student;
@@ -133,7 +133,7 @@ export const listStudent = (last_name, class_name) => {
         empty_array.push(find)
         if (find_student.includes(find)) {
             empty_array.map(element => {
-                element.fullName = element.firstName + ' ' + element.lastName;
+                element.fullName = `${element.firstName} ${element.lastName }`;
                 return element
             })
             return empty_array
@@ -146,7 +146,7 @@ export const listStudent = (last_name, class_name) => {
 export const getStudentID = (studentID) => {
     const check_validate = studentID_Validate(studentID);
     if (!check_validate) {
-        return Error
+        return check_validate
     }
     const student_database = readStudentDB();
     let find = student_database.find((obj) => obj.studentId === studentID);
